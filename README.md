@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project is a **Crypto Payment Gateway** that enables users to make payments using cryptocurrencies like **Bitcoin, Ethereum, and USDT**. It provides a secure and decentralized way for merchants to accept crypto transactions.
+This project is a **Crypto Payment Gateway** that enables users to make payments using cryptocurrencies like **Ethereum, and USDT on EVM chains**. It provides a secure and decentralized way for merchants to accept crypto transactions.
 
 ## 📂 Project Structure
 
@@ -13,7 +13,6 @@ crypto-payment-gateway/
 │   ├── config.py               # Configuration settings
 │   ├── blockchain/             # Blockchain payment handling
 │   │   ├── web3_utils.py       # Ethereum payment processing
-│   │   ├── bitcoin_utils.py    # Bitcoin payment processing
 │   ├── database/               # Database models and storage
 │   │   ├── models.py           # SQLAlchemy models
 │   │   ├── db_init.py          # Database initialization
@@ -88,12 +87,12 @@ crypto-payment-gateway/
 ✔️ **Secure environment variables** for private keys
 ✔️ **Deployable using Docker & Nginx**
 
-## 🔧 Installation Guide
+## 🛠 Installation Guide
 
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/crypto-payment-gateway.git
+git clone [https://github.com/your-username/crypto-payment-gateway.git](https://github.com/Pasonnn/crypto-payment-gateway.git)
 cd crypto-payment-gateway
 ```
 
@@ -108,7 +107,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-📌 The API should run on **http://127.0.0.1:5000/**
+📈 The API should run on **http://127.0.0.1:5000/**
 
 ### 3️⃣ Frontend Setup (React UI)
 
@@ -118,7 +117,7 @@ npm install
 npm start
 ```
 
-📌 The UI should run on **http://localhost:3000/**
+📈 The UI should run on **http://localhost:3000/**
 
 ## 🚀 API Endpoints
 
@@ -130,7 +129,7 @@ npm start
 | `GET`  | `/api/payment/status`  | Check transaction status     |
 | `POST` | `/api/payment/webhook` | Listen for blockchain events |
 
-## 📜 License
+## 📝 License
 
 This project is licensed under the **MIT License**.
 
@@ -138,6 +137,6 @@ This project is licensed under the **MIT License**.
 
 Feel free to contribute! Create a pull request or open an issue.
 
-## 📧 Contact
+## 💎 Contact
 
 If you have any questions, reach out at **pason.dev@gmail.com**.

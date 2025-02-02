@@ -1,0 +1,35 @@
+# Ignore virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment variables
+.env
+
+# Ignore logs and database files
+*.log
+*.sqlite3
+database/
+migrations/
+
+# Ignore frontend build files
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore deployment and editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Docker and dependencies
+docker-compose.override.yml
