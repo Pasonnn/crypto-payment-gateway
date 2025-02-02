@@ -140,4 +140,4 @@ Feel free to contribute! Create a pull request or open an issue.
 
 ## 📧 Contact
 
-If you have any questions, reach out at **your-email@example.com**.
+If you have any questions, reach out at **pason.dev@gmail.com**.
