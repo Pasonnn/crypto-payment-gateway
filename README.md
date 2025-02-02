@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project is a **Crypto Payment Gateway** that enables users to make payments using cryptocurrencies like **Ethereum, and USDT on EVM chains**. It provides a secure and decentralized way for merchants to accept crypto transactions.
+This project is a **Crypto Payment Gateway** that enables users to make payments using cryptocurrencies like **Bitcoin, Ethereum, and USDT on EVM chains**. It provides a secure and decentralized way for merchants to accept crypto transactions.
 
 ## 📂 Project Structure
 
