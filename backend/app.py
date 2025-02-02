@@ -9,14 +9,13 @@ from database.models import db
 app = Flask(__name__)
 CORS(app)
 
-# "database/" folder set up
-DATABASE_DIR = "database"
-if not os.path.exists(DATABASE_DIR):
-    os.makedirs(DATABASE_DIR)
+# "database/" folder exists
+if not os.path.exists("database"):
+    os.makedirs("database")
 
 # Load Configurations
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "supersecretkey")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/payments.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///payments.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize Database
