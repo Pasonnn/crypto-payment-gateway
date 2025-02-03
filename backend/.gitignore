@@ -1,0 +1,50 @@
+# Ignore environment files (DO NOT TRACK SECRETS)
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore logs
+*.log
+logs/
+debug.log
+
+# Ignore database files
+*.sqlite
+*.sqlite3
+database/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore Flask instance folder
+instance/
+
+# Ignore Docker files (if using Docker)
+*.docker
+docker-compose.override.yml
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files (VSCode, JetBrains, etc.)
+.vscode/
+.idea/
+*.iml
+
+# Ignore node_modules if backend has any JavaScript dependencies
+node_modules/
+
+# Ignore test coverage reports
+.coverage
+coverage/
+htmlcov/
