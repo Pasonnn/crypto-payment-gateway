@@ -7,6 +7,7 @@ load_dotenv()
 class Database:
     _instance = None
 
+    # Singleton pattern
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super(Database, cls).__new__(cls)
@@ -17,6 +18,7 @@ class Database:
             print(f"<console> Connected to MongoDB: {db_name}")
         return cls._instance
 
+    # Get collection from database
     @staticmethod
     def get_collection(collection_name):
         if Database._instance is None:

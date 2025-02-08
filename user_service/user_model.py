@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 
 class UserModel:
 
+    ### FIND USER ###
     @staticmethod
     def find_by_email(email):
         """Find user by email"""
@@ -21,17 +22,23 @@ class UserModel:
 
         """Find user by MongoDB ObjectID"""
         return Database.get_collection("users").find_one({"_id": user_id})
+    ### END OF FIND USER ###
 
+    ### HASH PASSWORD ###
     @staticmethod
     def hash_password(password):
         """Hash user password"""
         return hashlib.sha256(password.encode()).hexdigest()
+    ### END OF HASH PASSWORD ###
 
+    ### GENERATE API KEY ###
     @staticmethod
     def generate_api_key():
         """Generate a unique API key"""
         return secrets.token_hex(32)  # Generates a 64-character random API key
+    ### END OF GENERATE API KEY ###
 
+    ### INIT USER ###
     def __init__(self, username, email, password, role="user", wallet_address=""):
         """Initialize a new user object"""
         self.username = username
@@ -42,8 +49,10 @@ class UserModel:
         self.api_key = self.generate_api_key()  # Assign a new API key during registration
         self.created_at = datetime.datetime.utcnow()
         self.updated_at = datetime.datetime.utcnow()
+    ### END OF INIT USER ###
 
-    def save(self):
+    ### CRUD OPERATIONS ###
+    def save(self): 
         """Save the user to MongoDB"""
         user_collection = Database.get_collection("users")
         user_data = {
@@ -78,3 +87,4 @@ class UserModel:
         user_collection = Database.get_collection("users")
         user_collection.update_one({"_id": user_id}, {"$set": {"api_key": new_api_key}})
         return new_api_key
+    ### END OF CRUD OPERATIONS ###
