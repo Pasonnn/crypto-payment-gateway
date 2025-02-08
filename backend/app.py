@@ -21,11 +21,20 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "supersecretkey")
 # Initialize Database
 Database() 
 
+# Initialize Web3
+w3 = Web3(Web3.HTTPProvider(os.getenv("INFURA_SEPOLIA_URL")))
+if not w3.is_connected():
+    print("Failed to connect to the Ethereum node.")
+else:
+    print("Connected to the Ethereum node.")
+
 # Register User Routes
 app.register_blueprint(payment_routes)
 app.register_blueprint(user_routes)
 
 @app.route('/health', methods=['GET'])
+
+
 def health():
     """Health check route"""
     return {"status": "API Gateway is running"}, 200
