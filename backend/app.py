@@ -1,42 +1,35 @@
-from flask import Flask, jsonify
+# app.py
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 from web3 import Web3
+from payment_service.payment_routes import payment_routes
+from user_service.user_routes import user_routes
+from database.db import Database
 
-# ✅ Load Environment Variables
+# Load environment variables
 load_dotenv()
 
-# ✅ Initialize Flask App
+# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Ensure "database/" folder exists
-if not os.path.exists("database"):
-    os.makedirs("database")
-
-# ✅ Secure Configurations
+# Configure secret key
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "supersecretkey")
 
-# ✅ Connect to Infura Ethereum Node
-INFURA_URL = os.getenv("INFURA_URL")
-w3 = Web3(Web3.HTTPProvider(INFURA_URL))
+# Initialize Database
+Database() 
 
-# ✅ Check Ethereum Connection
-if w3.is_connected():
-    print("✅ Connected to Ethereum!")
-else:
-    print("❌ Failed to connect to Ethereum!")
-
-# ✅ Home Route
-@app.route("/")
-def home():
-    return jsonify({"message": "Crypto Payment Gateway API is running!"})
-
-# ✅ Import & Register Payment Routes
-from routes.payment_routes import payment_routes
+# Register User Routes
 app.register_blueprint(payment_routes)
+app.register_blueprint(user_routes)
 
-# ✅ Run Flask Server
+@app.route('/health', methods=['GET'])
+def health():
+    """Health check route"""
+    return {"status": "API Gateway is running"}, 200
+
+# Run Flask Server
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
