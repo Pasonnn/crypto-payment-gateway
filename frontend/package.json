@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "cryptopay-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -37,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

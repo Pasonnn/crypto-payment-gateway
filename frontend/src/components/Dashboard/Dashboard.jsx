@@ -317,7 +317,8 @@ const Dashboard = () => {
                         <div className="transaction-info">
                           <span className="amount">{parseFloat(transaction.amount).toFixed(5)} ETH</span>
                           <span className="date">
-                            {new Date(transaction.created_at).toLocaleDateString()} 
+                            {new Date(transaction.created_at).toLocaleDateString()}
+                            <span className="separator"> | </span>
                             {new Date(transaction.created_at).toLocaleTimeString()}
                           </span>
                         </div>

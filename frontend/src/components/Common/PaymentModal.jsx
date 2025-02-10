@@ -1,43 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import axios from 'axios';
 import CryptoPayConfig from '../../config/CryptoPayConfig';
+import { API_URL } from '../../config/api';
 
 const PaymentModal = ({ amount, config = {}, onClose, onSuccess, onError }) => {
   const [paymentAddress, setPaymentAddress] = useState('');
-  const [timeLeft, setTimeLeft] = useState(600);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [status, setStatus] = useState('initializing');
   const [error, setError] = useState('');
   const [ethAmount, setEthAmount] = useState(null);
 
-  useEffect(() => {
-    initializePayment();
-  }, []);
-
-  useEffect(() => {
-    if (status === 'pending' && paymentAddress) {
-      const timer = setInterval(checkPaymentStatus, 10000);
-      return () => clearInterval(timer);
-    }
-  }, [status, paymentAddress]);
-
-  useEffect(() => {
-    if (timeLeft > 0 && status === 'pending') {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0 && status === 'pending') {
-      handlePaymentTimeout();
-    }
-  }, [timeLeft, status]);
-
-  const initializePayment = async () => {
+  // Move initializePayment to useCallback to prevent recreation
+  const initializePayment = useCallback(async () => {
     try {
       const cryptoPayConfig = CryptoPayConfig.getConfig();
       
-      const response = await axios.post('http://localhost:5000/api/payments/create_payment', {
+      const response = await axios.post(`${API_URL}/api/payments/create_payment`, {
         api_key: cryptoPayConfig.apiKey,
         amount: parseFloat(amount),
-        currency: 'USD'
+        currency: 'ETH'
       });
 
       if (response.data && response.data.payment_address) {
@@ -56,21 +38,60 @@ const PaymentModal = ({ amount, config = {}, onClose, onSuccess, onError }) => {
       console.error('Payment initialization error:', error);
       onError?.(error);
     }
-  };
+  }, [amount, onError]); // Add dependencies
+
+  // Initialize payment only once when component mounts
+  useEffect(() => {
+    console.log("PaymentModal mounted");
+    initializePayment();
+  }, []); // Empty dependency array
+
+  // Status checking effect
+  useEffect(() => {
+    let intervalId;
+    if (status === 'pending' && paymentAddress) {
+      intervalId = setInterval(checkPaymentStatus, 10000);
+    }
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [status, paymentAddress]);
+
+  // Timer effect
+  useEffect(() => {
+    let timerId;
+    if (timeLeft > 0 && status === 'pending') {
+      timerId = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+    } else if (timeLeft === 0 && status === 'pending') {
+      handlePaymentTimeout();
+    }
+    return () => {
+      if (timerId) clearTimeout(timerId);
+    };
+  }, [timeLeft, status]);
 
   const checkPaymentStatus = async () => {
     if (!paymentAddress) return;
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/payments/payment_status?payment_address=${paymentAddress}`);
-      
-      if (response.data.status === 'paid') {
+      // Check payment status first
+      const statusResponse = await axios.get(
+        `${API_URL}/api/payments/payment_status?payment_address=${paymentAddress}`
+      );
+
+      if (statusResponse.data.status === 'paid') {
         setStatus('completed');
         onSuccess();
-      } else if (response.data.status === 'failed') {
-        setStatus('failed');
-        setError('Payment failed. Please try again.');
+        return; // Exit early if payment is confirmed
       }
+
+      // If not paid, update payment status
+      const cryptoPayConfig = CryptoPayConfig.getConfig();
+      await axios.put(`${API_URL}/api/payments/update_payment_status`, {
+        payment_address: paymentAddress,
+        api_key: cryptoPayConfig.apiKey
+      });
+
     } catch (error) {
       console.error('Payment status check error:', error);
     }
@@ -79,7 +100,7 @@ const PaymentModal = ({ amount, config = {}, onClose, onSuccess, onError }) => {
   const handlePaymentTimeout = async () => {
     try {
       const cryptoPayConfig = CryptoPayConfig.getConfig();
-      await axios.put('http://localhost:5000/api/payments/timeout', {
+      await axios.put(`${API_URL}/api/payments/timeout`, {
         payment_address: paymentAddress,
         api_key: cryptoPayConfig.apiKey
       });
@@ -141,6 +162,12 @@ const PaymentModal = ({ amount, config = {}, onClose, onSuccess, onError }) => {
             <div className="payment-status success">
               <h3>Payment Successful!</h3>
               <p>Thank you for your payment.</p>
+              <button 
+                className="btn-close-success"
+                onClick={onClose}
+              >
+                Close Window
+              </button>
             </div>
           )}
 

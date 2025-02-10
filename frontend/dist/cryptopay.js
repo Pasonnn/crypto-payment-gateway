@@ -22,7 +22,7 @@
       const button = document.createElement('button');
       button.className = 'cryptopay-button';
       button.innerHTML = `
-        <img src="${options.iconUrl || 'https://cryptopay.com/icon.svg'}" alt="CryptoPay">
+        <img src="${options.iconUrl || 'https://ibb.co/W4yRZM6b'}" alt="CryptoPay">
         ${options.text || 'Pay with CryptoPay'}
       `;
 

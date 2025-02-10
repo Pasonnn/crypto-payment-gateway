@@ -82,3 +82,50 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+# CryptoPay Frontend
+
+## Deployment
+
+### Prerequisites
+
+- Node.js >=14
+- npm or yarn
+- Vercel account
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+### Production Deployment
+
+1. Fork/clone this repository
+2. Connect your GitHub repository to Vercel
+3. Configure environment variables in Vercel:
+   - REACT_APP_API_URL: Your backend API URL
+   - REACT_APP_WS_URL: Your backend WebSocket URL
+4. Deploy:
+   ```bash
+   vercel --prod
+   ```
+
+### Environment Variables
+
+Create `.env.production` file:
+
+```
+REACT_APP_API_URL=https://your-backend-domain.com
+REACT_APP_WS_URL=wss://your-backend-domain.com
+```
+
+### Build
+
+```bash
+npm run build
+```

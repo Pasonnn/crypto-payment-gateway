@@ -26,9 +26,12 @@ class PaymentController:
             currency = data.get("currency")
             api_key = data.get("api_key")
 
+            print(f"amount: {amount}, currency: {currency}, api key: {api_key}")
+
             # Typecast the amount to a float
             try:
                 amount = float(amount)
+                print(amount)
             except ValueError:
                 return jsonify({"error": "Invalid amount"}), 400
 
@@ -36,7 +39,7 @@ class PaymentController:
             user = db_users.find_one({"api_key": api_key})
             if not user:
                 return jsonify({"error": "Invalid API key"}), 401
-            
+    
             # Return the user id
             user_id = user["_id"]
             ### END OF DATA PROCESSING ###
@@ -44,10 +47,12 @@ class PaymentController:
             ### CURRENCY VALIDATION ###
             # Check if the amount is valid
             if amount <= 0:
+                print("amount < 0")
                 return jsonify({"error": "Invalid amount"}), 400
             
             # Check if the currency is valid
             if currency not in ["ETH"]:
+                print("currency not eth")
                 return jsonify({"error": "Invalid currency"}), 400
 
             # Convert the amount to ETH
@@ -58,7 +63,6 @@ class PaymentController:
 
             # Check if the ETH amount is valid
             if eth_amount is None:
-
                 return jsonify({"error": "Invalid amount"}), 400
             ### END OF CURRENCY VALIDATION ###
 

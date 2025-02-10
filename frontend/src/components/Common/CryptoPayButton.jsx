@@ -44,7 +44,7 @@ const CryptoPayButton = ({
         className="cryptopay-button"
       >
         <img 
-          src="/cryptopay-icon.svg" 
+          src="https://ibb.co/W4yRZM6b" 
           alt="CryptoPay" 
           style={{ width: '20px', height: '20px' }} 
         />

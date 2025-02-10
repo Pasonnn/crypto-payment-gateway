@@ -1287,7 +1287,7 @@ margin-left: 10px;
     align-items: flex-end;
 }
 
-.btn-donate {
+.cryptopay-button {
     padding: 1rem 2rem;
     font-size: 1.6rem;
     background: var(--main-color);
@@ -1299,7 +1299,7 @@ margin-left: 10px;
     margin-bottom: 2rem;
 }
 
-.btn-donate:hover {
+.cryptopay-button:hover {
     background: var(--hover-color);
 }
 
@@ -1328,4 +1328,20 @@ margin-left: 10px;
   font-size: 2.8rem;
   color: var(--main-color);
   font-weight: 600;
+}
+
+.btn-close-success {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-success:hover {
+  background: var(--hover-color);
 }

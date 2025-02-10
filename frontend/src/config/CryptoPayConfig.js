@@ -18,7 +18,7 @@ class CryptoPayConfig {
   init(config) {
     this.apiKey = config.apiKey;
     this.environment = config.environment || 'testnet';
-    this.currency = config.currency || 'USD';
+    this.currency = config.currency || 'ETH';
     this.callbackUrl = config.callbackUrl;
   }
 

@@ -55,6 +55,7 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
 
   const handleDonate = (e) => {
     e.preventDefault();
+       console.log("Donate button clicked");
     if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {
       setError('Please enter a valid amount');
       return;
