@@ -20,6 +20,8 @@ const LoginForm = () => {
       });
       console.log('Login successful:', response.data);
       // Handle successful login (e.g., store token, redirect)
+      localStorage.setItem('token', response.data.token); // Store the token in local storage
+      navigate('/dashboard'); // Redirect to the dashboard
     } catch (err) {
       setError('Login failed. Please check your credentials.');
       console.error(err);
