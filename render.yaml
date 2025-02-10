@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: crypto-payment-server
+    env: python
+    plan: free
+    runtime: python
+    pythonVersion: 3.9 # Specify the desired Python version
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py # Adjust this to your main application file
