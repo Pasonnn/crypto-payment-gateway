@@ -1183,3 +1183,149 @@ margin-left: 10px;
     background: rgba(0, 255, 149, 0.1);
     border-radius: 5px;
 }
+
+/* Payment Modal Styles */
+.payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.payment-modal {
+    background: var(--second-bg-color);
+    padding: 3rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 2.4rem;
+    cursor: pointer;
+}
+
+.payment-content {
+    text-align: center;
+}
+
+.payment-info {
+    margin: 2rem 0;
+}
+
+.payment-info .amount {
+    font-size: 2.4rem;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.payment-info .timer {
+    font-size: 1.6rem;
+    color: #888;
+    margin-top: 1rem;
+}
+
+.payment-address {
+    margin: 2rem 0;
+}
+
+.payment-address .address {
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    word-break: break-all;
+    margin-top: 1rem;
+}
+
+.payment-instructions {
+    margin-top: 2rem;
+    color: #888;
+    font-size: 1.4rem;
+}
+
+.payment-status {
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+}
+
+.payment-status.success {
+    background: rgba(0, 255, 149, 0.1);
+    color: var(--main-color);
+}
+
+.payment-status.error {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+}
+
+/* Donation Section Styles */
+.donation-section {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.donation-form {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-end;
+}
+
+.btn-donate {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.btn-donate:hover {
+    background: var(--hover-color);
+}
+
+/* Add these to your existing styles */
+.eth-amount {
+  font-size: 1.8rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.exchange-rate {
+  font-size: 1.4rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Update payment info styles */
+.payment-info {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.payment-info .amount {
+  font-size: 2.8rem;
+  color: var(--main-color);
+  font-weight: 600;
+}

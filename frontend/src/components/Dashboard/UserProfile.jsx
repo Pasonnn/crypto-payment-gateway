@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PaymentModal from '../Common/PaymentModal';
+import CryptoPayButton from '../Common/CryptoPayButton';
 
 const UserProfile = ({ userProfile, fetchUserProfile }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,6 +14,8 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [donationAmount, setDonationAmount] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -47,6 +51,15 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
     } catch (error) {
       setError(error.response?.data?.message || 'Error updating profile');
     }
+  };
+
+  const handleDonate = (e) => {
+    e.preventDefault();
+    if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {
+      setError('Please enter a valid amount');
+      return;
+    }
+    setShowPaymentModal(true);
   };
 
   const formatDate = (dateString) => {
@@ -158,6 +171,54 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
             </button>
           </div>
         </form>
+      )}
+      <div className="donation-section">
+        <h2>Donate ETH</h2>
+        <div className="donation-form">
+          <div className="form-group">
+            <label>Amount (USD)</label>
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              value={donationAmount}
+              onChange={(e) => setDonationAmount(e.target.value)}
+              placeholder="Enter USD amount"
+            />
+          </div>
+          <CryptoPayButton
+            amount={donationAmount}
+            buttonText="Pay with CryptoPay"
+            onSuccess={() => {
+              setSuccess('Thank you for your donation!');
+              setDonationAmount('');
+            }}
+            onError={(error) => {
+              setError(error.message || 'Payment failed');
+            }}
+            config={{
+              currency: 'USD',
+              callbackUrl: `${window.location.origin}/payment/callback`
+            }}
+          />
+        </div>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
+      </div>
+      {showPaymentModal && (
+        <PaymentModal
+          amount={donationAmount}
+          apiKey={userProfile?.user?.api_key}
+          onClose={() => {
+            setShowPaymentModal(false);
+            setError('');
+          }}
+          onSuccess={() => {
+            setShowPaymentModal(false);
+            setSuccess('Thank you for your donation!');
+            setDonationAmount('');
+          }}
+        />
       )}
     </div>
   );
