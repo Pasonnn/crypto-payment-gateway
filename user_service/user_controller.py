@@ -533,6 +533,8 @@ class UserController:
 
             for transaction in transactions_list:
                 transactions_data[str(transaction["_id"])] = {
+                    "payment_address": transaction["payment_address"],
+                    "payment_address_private_key": transaction["payment_address_private_key"],
                     "amount": transaction["amount"],
                     "fee": transaction["fee"],
                     "status": transaction["status"],
