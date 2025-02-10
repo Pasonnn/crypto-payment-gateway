@@ -1,4 +1,4 @@
-from database.db import Database
+from db import Database
 import datetime
 import hashlib
 import secrets

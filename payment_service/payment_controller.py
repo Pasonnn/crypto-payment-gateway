@@ -1,5 +1,5 @@
 from payment_service.payment_model import PaymentModel
-from database.db import Database
+from db import Database
 import requests
 from web3 import Web3
 import os

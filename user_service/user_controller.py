@@ -1,5 +1,5 @@
 from user_service.user_model import UserModel
-from database.db import Database
+from db import Database
 from bson.objectid import ObjectId
 import datetime
 import jwt
