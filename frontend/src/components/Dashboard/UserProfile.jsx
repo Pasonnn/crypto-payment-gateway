@@ -36,7 +36,7 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${process.env.REACT_APP_API_SERVER}/api/users/edit`, 
+      await axios.put('http://localhost:5000/api/users/edit', 
         {
           username: formData.username,
           current_password: formData.currentPassword,

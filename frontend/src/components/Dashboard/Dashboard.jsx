@@ -98,7 +98,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/api/users/dashboard`, {
+      const response = await axios.get(link+'/api/users/dashboard', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDashboardData(response.data.dashboard);
@@ -125,7 +125,7 @@ const Dashboard = () => {
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/api/users/profile`, {
+      const response = await axios.get('http://localhost:5000/api/users/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserProfile(response.data);
@@ -137,7 +137,7 @@ const Dashboard = () => {
   const fetchTransactions = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/api/users/transactions`, {
+      const response = await axios.get('http://localhost:5000/api/users/transactions', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -155,7 +155,7 @@ const Dashboard = () => {
   const fetchApiKey = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/api/users/api_key`, {
+      const response = await axios.get('http://localhost:5000/api/users/api_key', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setApiKey(response.data.api_key || 'No API key generated');
@@ -168,7 +168,7 @@ const Dashboard = () => {
   const regenerateApiKey = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/regenerate_api_key`, {}, {
+      const response = await axios.post('http://localhost:5000/api/users/regenerate_api_key', {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setApiKey(response.data.api_key);
@@ -180,7 +180,7 @@ const Dashboard = () => {
   const updateWallet = async (address) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${process.env.REACT_APP_API_SERVER}/api/users/update_wallet`, 
+      await axios.put('http://localhost:5000/api/users/update_wallet', 
         { wallet_address: address },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -193,7 +193,7 @@ const Dashboard = () => {
   const fetchWalletAddress = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_SERVER}/api/users/profile`, {
+      const response = await axios.get('http://localhost:5000/api/users/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setWalletAddress(response.data.user.wallet_address || 'No wallet bound');
