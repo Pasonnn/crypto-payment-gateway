@@ -129,6 +129,7 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserProfile(response.data);
+      localStorage.setItem('userRole', response.data.user.role); // Store user role
     } catch (error) {
       console.error('Error fetching user profile:', error);
     }
@@ -279,6 +280,14 @@ const Dashboard = () => {
           >
             Profile
           </button>
+          {userProfile?.user?.role === 'admin' && (
+            <button 
+              className="nav-button"
+              onClick={() => navigate('/admin')}
+            >
+              Management
+            </button>
+          )}
         </div>
       </nav>
 

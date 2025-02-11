@@ -2,7 +2,7 @@ class CryptoPayConfig {
   static instance = null;
   
   constructor() {
-    this.apiKey = '3803d823d5f6aed8b534f775b5e471231784099ff3b0932ec51e8793cede2c92';
+    this.apiKey = "0b35fe6dca083a8f240cab41fcd83f7706c07c52690d9909cc10e10ce3784147";
     this.environment = 'testnet'; // or 'mainnet'
     this.currency = 'USD';
     this.callbackUrl = null;

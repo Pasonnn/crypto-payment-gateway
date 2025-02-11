@@ -1,132 +1,132 @@
-# CryptoPay - Cryptocurrency Payment Gateway
+# CryptoPay - Local Development Setup
 
-CryptoPay is a simple and secure way to accept cryptocurrency payments on your website. This guide will help you integrate CryptoPay into your website.
+CryptoPay is a cryptocurrency payment gateway that allows you to accept cryptocurrency payments on your website. This guide will help you set up the project locally for development.
 
-## Quick Start
+## Prerequisites
 
-### 1. Get Your API Key
+Before you begin, ensure you have the following installed on your machine:
 
-1. Create an account at [CryptoPay Dashboard](https://cryptopay.com/register)
-2. Navigate to API Key section
-3. Generate your API key
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [MongoDB](https://www.mongodb.com/) (for the database)
+- [Python](https://www.python.org/) (for the backend, if applicable)
 
-### 2. Add CryptoPay to Your Website
+## Getting Started
 
-#### Using CDN
+Follow these steps to set up the project locally:
 
-Add the following script to your HTML:
+### 1. Clone the Repository
 
-```html
-<script src="https://cdn.cryptopay.com/cryptopay.js"></script>
-```
+Clone the CryptoPay repository to your local machine:
 
-Initialize CryptoPay with your API key:
-
-```javascript
-CryptoPay.init({
-  apiKey: 'YOUR_API_KEY',
-  environment: 'testnet', // or 'mainnet' for production
-  currency: 'USD'
-});
-```
-
-### 3. Create a Payment Button
-
-#### Simple Integration
-
-```html
-<div id="cryptopay-button"></div>
-
-<script>
-  CryptoPay.createButton('cryptopay-button', {
-    amount: 99.99,
-    onSuccess: function(payment) {
-      console.log('Payment successful:', payment);
-    },
-    onError: function(error) {
-      console.error('Payment failed:', error);
-    }
-  });
-</script>
-```
-
-#### React Integration
-
-Install the package:
 ```bash
-npm install @cryptopay/react
+git clone https://github.com/Pasonnn/crypto-payment-gateway.git
+cd crypto-payment-gateway
 ```
 
-Use in your component:
-```javascript
-import { CryptoPayButton } from '@cryptopay/react';
+### 2. Set Up the Backend
 
-function App() {
-  return (
-    <CryptoPayButton
-      amount={99.99}
-      onSuccess={(payment) => console.log('Payment successful:', payment)}
-      onError={(error) => console.error('Payment failed:', error)}
-    />
-  );
-}
+#### 2.1. Navigate to the Backend Directory
+
+```bash
+cd backend
 ```
 
-## Features
+#### 2.2. Install Dependencies
 
-- Accept ETH payments
-- Real-time payment tracking
-- Automatic payment verification
-- Customizable UI
-- Webhook notifications
-- Detailed transaction history
-- Sepolia testnet support
+Install the required packages:
 
-## API Documentation
-
-For detailed API documentation, visit [docs.cryptopay.com](https://docs.cryptopay.com)
-
-## Examples
-
-### Custom Styling
-
-```javascript
-CryptoPay.createButton('cryptopay-button', {
-  amount: 99.99,
-  customStyle: {
-    backgroundColor: '#007bff',
-    color: 'white',
-    padding: '15px 30px',
-    borderRadius: '8px'
-  }
-});
+```bash
+npm install
 ```
 
-### With Callback URL
+#### 2.3. Create Environment Variables
 
-```javascript
-CryptoPay.createButton('cryptopay-button', {
-  amount: 99.99,
-  callbackUrl: 'https://your-website.com/payment/callback',
-  metadata: {
-    orderId: '12345',
-    customerEmail: 'customer@example.com'
-  }
-});
+Create a `.env` file in the backend directory and add the following variables:
+
+```env
+# Infura Ethereum Node API Key
+INFURA_SEPOLIA_URL="https://sepolia.infura.io/v3/YOUR_INFURA_API_KEY"
+
+# Flask Secret Key
+SECRET_KEY="your_secure_random_key_here"
+
+# Database Configuration (MongoDB)
+DATABASE_URI="mongodb+srv://your_username:your_password@your_cluster.mongodb.net"
+DATABASE_NAME="your_database_name"
+
+# Admin Wallet Address
+ADMIN_WALLET_ADDRESS="your_ethereum_wallet_address"
 ```
 
-## Development
+#### 2.4. Start the Backend Server
 
-For local development and contributing to CryptoPay, see:
-- [Frontend Documentation](./frontend/README.md)
-- [Backend Documentation](./backend/README.md)
+Run the backend server:
 
-## Support
+```bash
+npm start
+```
 
-- Documentation: [docs.cryptopay.com](https://docs.cryptopay.com)
-- Issues: [GitHub Issues](https://github.com/yourusername/cryptopay/issues)
-- Email: support@cryptopay.com
+### 3. Set Up the Frontend
+
+#### 3.1. Navigate to the Frontend Directory
+
+Open a new terminal window and navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+#### 3.2. Install Dependencies
+
+Install the required packages:
+
+```bash
+npm install
+```
+
+#### 3.3. Create Environment Variables
+
+Create `.env.development` and `.env.production` files in the frontend directory:
+
+`.env.development`:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_WS_URL=ws://localhost:5000
+```
+
+`.env.production`:
+
+```env
+REACT_APP_API_URL=https://your-backend-domain.com
+REACT_APP_WS_URL=wss://your-backend-domain.com
+```
+
+#### 3.4. Start the Frontend Server
+
+Run the frontend server:
+
+```bash
+npm start
+```
+
+### 4. Access the Application
+
+Once both the backend and frontend servers are running, you can access the application in your web browser at:
+
+```
+http://localhost:3000
+```
+
+## Contributing
+
+If you would like to contribute to the project, please fork the repository and submit a pull request.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For any issues or questions, please reach out via [GitHub Issues](https://github.com/Pasonnn/crypto-payment-gateway/issues) or email pason,dev@gmail.com.

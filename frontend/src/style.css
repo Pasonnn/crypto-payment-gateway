@@ -1345,3 +1345,55 @@ margin-left: 10px;
 .btn-close-success:hover {
   background: var(--hover-color);
 }
+
+/* Add to your existing styles */
+.admin-link {
+  background: var(--main-color) !important;
+  color: var(--bg-color) !important;
+  border-radius: 5px;
+  margin-left: 2rem;
+  padding: 0.8rem 1.5rem !important;
+}
+
+.admin-link:hover {
+  background: var(--hover-color) !important;
+}
+
+/* Add to your existing styles */
+.admin-button {
+  background: var(--main-color) !important;
+  color: var(--bg-color) !important;
+  border-radius: 5px;
+  margin-left: 2rem;
+  padding: 0.8rem 1.5rem !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-button:hover {
+  background: var(--hover-color) !important;
+  transform: translateY(-2px);
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Add to your existing styles */
+.nav-links .nav-button {
+  background: var(--main-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 2rem;
+}
+
+.nav-links .nav-button:hover {
+  background: var(--hover-color);
+}

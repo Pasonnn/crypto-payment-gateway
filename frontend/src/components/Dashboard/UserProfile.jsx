@@ -16,6 +16,7 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
   const [success, setSuccess] = useState('');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [donationAmount, setDonationAmount] = useState('');
+  const [finalAmount, setFinalAmount] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -53,13 +54,8 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
     }
   };
 
-  const handleDonate = (e) => {
-    e.preventDefault();
-       console.log("Donate button clicked");
-    if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {
-      setError('Please enter a valid amount');
-      return;
-    }
+  const handleOpenPaymentModal = () => {
+    setFinalAmount(donationAmount); // Lock the current donation amount
     setShowPaymentModal(true);
   };
 
@@ -190,6 +186,7 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
           <CryptoPayButton
             amount={donationAmount}
             buttonText="Pay with CryptoPay"
+            onClick={handleOpenPaymentModal}
             onSuccess={() => {
               setSuccess('Thank you for your donation!');
               setDonationAmount('');
@@ -208,7 +205,7 @@ const UserProfile = ({ userProfile, fetchUserProfile }) => {
       </div>
       {showPaymentModal && (
         <PaymentModal
-          amount={donationAmount}
+          amount={finalAmount}
           apiKey={userProfile?.user?.api_key}
           onClose={() => {
             setShowPaymentModal(false);
