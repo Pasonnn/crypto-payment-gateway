@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from web3 import Web3
 from payment_service.payment_routes import payment_routes
 from user_service.user_routes import user_routes
-from database.db import Database
+from db import Database
 
 # Load environment variables
 load_dotenv()
