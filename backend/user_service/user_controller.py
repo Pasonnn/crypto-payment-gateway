@@ -467,6 +467,8 @@ class UserController:
             total_fee = 0
 
             for payment in payments_list:
+                if payment["status"] == "pending":
+                    continue
                 payment_revenue = payment["amount"]
                 payment_fee = payment["fee"]
                 total_revenue += payment_revenue
@@ -532,6 +534,8 @@ class UserController:
             transactions_data = {}
 
             for transaction in transactions_list:
+                if transaction["status"] == "pending":
+                    continue
                 transactions_data[str(transaction["_id"])] = {
                     "payment_address": transaction["payment_address"],
                     "payment_address_private_key": transaction["payment_address_private_key"],

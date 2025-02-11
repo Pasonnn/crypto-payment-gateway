@@ -6,7 +6,7 @@ import { API_URL } from '../../config/api';
 
 const PaymentModal = ({ amount, config = {}, onClose, onSuccess, onError }) => {
   const [paymentAddress, setPaymentAddress] = useState('');
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(600);
   const [status, setStatus] = useState('initializing');
   const [error, setError] = useState('');
   const [ethAmount, setEthAmount] = useState(null);
