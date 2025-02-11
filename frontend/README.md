@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# CryptoPay Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend application for CryptoPay - a cryptocurrency payment gateway solution.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User Authentication (Login/Register)
+- Dashboard with Revenue Analytics
+- Transaction Management
+- Wallet Connection (MetaMask Integration)
+- API Key Management
+- User Profile Management
+- Payment Processing Interface
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js >=14
+- npm or yarn
+- MetaMask browser extension
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/Pasonnn/crypto-payment-gateway.git
+cd cryptopay/frontend
+```
 
-### `npm run build`
+2. Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create environment files:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For development (.env.development):
 
-### `npm run eject`
+```
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_WS_URL=ws://localhost:5000
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For production (.env.production):
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+REACT_APP_API_URL=https://your-backend-domain.com
+REACT_APP_WS_URL=wss://your-backend-domain.com
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Development
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the development server:
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Building for Production
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build
+```
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The project is configured for Vercel deployment:
 
-### Analyzing the Bundle Size
+1. Install Vercel CLI:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm i -g vercel
+```
 
-### Making a Progressive Web App
+2. Deploy:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+vercel
+```
 
-### Advanced Configuration
+3. For production:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+vercel --prod
+```
 
-### Deployment
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+frontend/
+├── public/
+├── src/
+│   ├── assets/         # Images and static files
+│   ├── components/     # React components
+│   │   ├── Auth/      # Authentication components
+│   │   ├── Common/    # Shared components
+│   │   ├── Dashboard/ # Dashboard components
+│   │   └── LandingPage/
+│   ├── config/        # Configuration files
+│   ├── styles/        # CSS styles
+│   └── App.js         # Main application component
+├── package.json
+└── vercel.json        # Vercel deployment config
+```
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
